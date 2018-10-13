@@ -1,13 +1,31 @@
-# project-four
+# Full stack app boilerplate
 
-Idea 1
-A food allergy application, that is based on location. When traveling able to find restaurants that are food allergy friendly.
-Users can put in their choice of foods to stay away from and the app saves that info based on the user login and when traveling recommends restaurants, deli, bakeries, cafes that is safe to eat at.
+This is boilerplate for a full-stack app.
 
-Idea 2
-Travel food application that populates restaurants in your area based on location and most importantly budget.
-The user would input their food budget and based on that the app would recommend restaurants and food places in their area that match those parameters
+## Install JS dependencies
 
-Idea 3
-An application that picks ypur meal it can pick from different options at random based on food preferences and diets/ allergies.
+```
+npm install
+```
+
+## Modify the database name
+
+The database name is defined in `createDb.sql` and `models.js`. You'll need to edit them by hand for now.
+
+## Create the database
+
+```
+npm run db
+```
+
+This will drop the database, recreate it, create tables defined in `models.js`, and seed the database with instance data from `seed.js`
+
+## Run the development server
+
+This will start both the Express API server and the React application.
+
+```
+npm run dev
+```
+A food allergy application, that is based on location. When traveling able to find restaurants that are food allergy friendly. Users can put in their choice of foods to stay away from and the app saves that info based on the user login and when traveling recommends restaurants, deli, bakeries, cafes that is safe to eat at.
 
