@@ -1,10 +1,9 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
-  database: 'some_app_name',
   dialect: 'postgres'
 });
-// Create models here
+
 const User = sequelize.define('user', {
   username: {
     type: Sequelize.TEXT,
@@ -22,8 +21,6 @@ const User = sequelize.define('user', {
   }
 });
 
-
-
 const Food_Establishment = sequelize.define('foodPlace', {
   name: {
     type: Sequelize.TEXT,
@@ -34,7 +31,7 @@ const Food_Establishment = sequelize.define('foodPlace', {
     allowNull: false
   },
   allergyFriendly: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.TEXT,
     allowNull: false
   }
 });
@@ -42,7 +39,6 @@ const Food_Establishment = sequelize.define('foodPlace', {
 const Allergy = sequelize.define('allergy', {
   TYPE: {
     type: Sequelize.TEXT,
-    allowNull: false
   },
 });
 
