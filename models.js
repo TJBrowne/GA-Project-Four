@@ -53,7 +53,6 @@ Allergy.belongsToMany(Food_Establishment, { through: FoodEstAllergy });
 
 
 module.exports = {
-  // Export models
   User, 
   Food_Establishment, 
   Allergy,
