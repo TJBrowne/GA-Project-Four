@@ -7,11 +7,8 @@ const PORT = process.env.PORT || 5678;
 const path = require('path');
 
 const app = express();
-// Static hosting for built files
 app.use("/", express.static("./build/"));
-
 const jwtSecret = 'abc13225566'
-
 app.use(bodyParser.json());
 
 app.get('/api/restaurants', async (request, response) => {
@@ -20,8 +17,16 @@ app.get('/api/restaurants', async (request, response) => {
 });
 
 app.get('/api/restaurants/:id', async (request, response) => {
-  const foodPlace = await FoodPlace.findAll({});
-  response.json(foodPlace);
+  const eachFoodPlace = await FoodPlace.findOne({
+      where: {
+          id: request.params.id
+      }
+  })
+  if ( eachFoodPlace === null) {
+      response.sendStatus(404);
+  } else {
+      response.json(eachFoodPlace)
+  }
 });
 
 app.post('/api/register', async (request, response) => {
@@ -87,6 +92,42 @@ app.post('/api/login', async (request, response) => {
     })
   }
 });
+
+app.get('/api/current-user', async (request, response) => {
+  
+  const token = request.headers['jwt-token'];
+  let verification;
+  try{
+    verification = jwt.verify(token, jwtSecret);
+  }catch(e) {
+    console.log(e);
+  }
+  const findId = await User.findOne({
+    where: {
+      id: verification.userId
+    }
+  });
+  response.status(200).json(findId.id, findId.username);
+});
+
+app.put('/api/current-user', async(request, response) => {
+  const token = request.headers['jwt-token'];
+  let verification;
+  try{ 
+    verification = jwt.verify(token, jwtSecret);
+  } catch(e) {
+    console.log(e);
+  }
+  // console.log(tokenData);
+  const user = await User.findOne({
+    where: {
+      id: verification.userId
+    }
+  });
+  user.favoritesList = request.body.favoritesList;
+  await user.save();
+  response.sendStatus(204);
+})
 
 
 

@@ -27,17 +27,17 @@ class RegistrationPage extends Component {
         });
         const responseBody = await response.json();
         if (response.status === 409 || responseBody === undefined) {
-            alert("User already exists, Please choose another username")
+            alert("User already exists, Choose another username")
             return;
         }
-        this.props.onLogin();
-        localStorage.setItem('user-jwt', responseBody);
-        this.props.history.push("/home");
+        // this.props.onLogin();
+        // localStorage.setItem('user-jwt', responseBody);
+        // this.props.history.push("/home");
     }
 
     logIn = async () => {
         if (this.props.username === "" || this.props.password === "") {
-            alert("Please place a valid username or password");
+            alert("Please enter a valid username or password");
             return;
         };
 
@@ -62,9 +62,9 @@ class RegistrationPage extends Component {
             });
             return;
         }
-        this.props.onLogin();
-        localStorage.setItem('user-jwt', JSON.stringify(responseBody))
-        this.props.history.push("/home");
+        // this.props.onLogin();
+        // localStorage.setItem('user-jwt', JSON.stringify(responseBody))
+        // this.props.history.push("/home");
     }
 
     render() {

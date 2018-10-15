@@ -3,6 +3,7 @@ import "./style.css";
 import Home from "../Home";
 import Details from "../Details";
 import RegistrationPage from "../RegistrationPage";
+import SearchBar from "../SearchBar";
 
 class App extends Component {
   constructor(props) {
@@ -50,8 +51,9 @@ class App extends Component {
       <div className="App">
       <h1>NYC Allergy Free Eats!!!!</h1>
       <Home />
-        <RegistrationPage handleChange={this.handleChange} onLogin={this.onLogin} username={this.state.username} password={this.state.password} />
-        <Details />
+      <SearchBar />
+      <RegistrationPage handleChange={this.handleChange} onLogin={this.onLogin} username={this.state.username} password={this.state.password} />
+      <Details />
       </div>
 
     );
