@@ -1,86 +1,86 @@
-const { User, Food_Establishment, Allergy, UserAllergy, FoodEstAllergy } = require('./models');
+const { User, FoodPlace, Allergy, UserAllergy, FoodAllergy } = require('./models');
 
 const main = async () => {
-  const bigDaddy = await Food_Establishment.create({
+  const bigDaddy = await FoodPlace.create({
     name: "Big Daddy'\s",
     address: "2454 Broadway, New York NY, 10024",
     allergyFriendly: "Dairy-Free Options, Gluten-Free Options, Nut-Free Kitchen"   
   });
-  const bigDaddyTwo = await Food_Establishment.create({
+  const bigDaddyTwo = await FoodPlace.create({
     name: "Big Daddy'\s",
     address: "239 Park Ave. South",
     allergyFriendly: "Dairy-Free Options, Gluten-Free Options, Nut-Free Kitchen"   
   });
-  const bistango = await Food_Establishment.create({
+  const bistango = await FoodPlace.create({
     name: "Bistango",
     address: "415 3rd. Ave., New York, NY 10016", 
     allergyFriendly: "Dairy-Free Options, Gluten-Free Options, Nut-Free Options"
   });
-  const bistangoTwo = await Food_Establishment.create({
+  const bistangoTwo = await FoodPlace.create({
     name: "Bistango",
     address: "145 E. 50th St., New York, NY",
     allergyFriendly: "Dairy-Free Options, Gluten-Free Options, Nut-Free Options"   
   });
-  const blueSmoke = await Food_Establishment.create({
+  const blueSmoke = await FoodPlace.create({
     name: "Blue Smoke",
     address: "116 East 27th Street, New York, NY ",
     allergyFriendly: "Dairy-Free Options, Gluten-Free Options, Nut-Free Options"   
   });
-  const crepes = await Food_Establishment.create({
+  const crepes = await FoodPlace.create({
     name: "Crepes Du Nord",
     address: "17 William Street, New York, New York 10004",
     allergyFriendly: "Gluten-Free Options, Peanut-Free Options" 
   });
-  const cochinita = await Food_Establishment.create({
+  const cochinita = await FoodPlace.create({
     name: "Cochinita Tacos:",
     address: "922 Fulton Street, Brooklyn, NY 11238",
     allergyFriendly: "Dairy-Free Options, Gluten-Free Options, Nut-Free Kitchen" 
   });
-  const byChloe = await Food_Establishment.create({
+  const byChloe = await FoodPlace.create({
     name: "By Chloe",
     address: "185 Bleecker St, New York, NY 10012",
     allergyFriendly: "Dairy-Free Kitchen, Gluten-Free Options" 
   });
-  const colors = await Food_Establishment.create({
+  const colors = await FoodPlace.create({
     name: "Colors",
     address: "417 Lafayette Street, New York, New York 10003",
     allergyFriendly: "Gluten-Free Kitchen" 
   });
-  const huKitchen = await Food_Establishment.create({
+  const huKitchen = await FoodPlace.create({
     name: "Hu Kitchen",
     address: "78 5th Avenue, New York, New York 10011",
     allergyFriendly: "Dairy-Free Kitchen, Gluten-Free Kitchen" 
   });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const dairy = await Allergy.create({
-    type: "Dairy"
+    name: "Dairy"
   });
   const gluten = await Allergy.create({
-    type: "Gluten"
+    name: "Gluten"
   });
   const soy = await Allergy.create({
-    type: "Soy"
+    name: "Soy"
   });
   const wheat = await Allergy.create({
-    type: "Wheat" 
+    name: "Wheat" 
   });
   const egg = await Allergy.create({
-    type: "Egg" 
+    name: "Egg" 
   });
   const peanut = await Allergy.create({
-    type: "Peanut"  
+    name: "Peanut"  
   });
   const seafood = await Allergy.create({
-    type: "Seafood"  
+    name: "Seafood"  
   });
   const sesame = await Allergy.create({
-    type: "Sesame"  
+    name: "Sesame"  
   });
   const treeNut = await Allergy.create({
-    type: "Tree Nut"  
+    name: "Tree Nut"  
   });
   const sulfite = await Allergy.create({
-    type: "Sulfite"   
+    name: "Sulfite"   
   });
 
   await bigDaddy.addAllergy(dairy);

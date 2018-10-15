@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
+  database: 'nyc_allergy_free_eats',
   dialect: 'postgres'
 });
 
@@ -21,7 +22,7 @@ const User = sequelize.define('user', {
   }
 });
 
-const Food_Establishment = sequelize.define('foodPlace', {
+const FoodPlace = sequelize.define('foodPlace', {
   name: {
     type: Sequelize.TEXT,
     allowNull: false
@@ -37,24 +38,27 @@ const Food_Establishment = sequelize.define('foodPlace', {
 });
 
 const Allergy = sequelize.define('allergy', {
-  TYPE: {
+  name: {
     type: Sequelize.TEXT,
   },
 });
 
 const UserAllergy = sequelize.define('userAllergy');
-const FoodEstAllergy = sequelize.define('foodEstAllergy');
+const FoodAllergy = sequelize.define('foodAllergy');
+const UserFood = sequelize.define('userFood');
 
 User.belongsToMany(Allergy, { through: UserAllergy });
 Allergy.belongsToMany(User, { through: UserAllergy });
 
-Food_Establishment.belongsToMany(Allergy, { through: FoodEstAllergy });
-Allergy.belongsToMany(Food_Establishment, { through: FoodEstAllergy });
+FoodPlace.belongsToMany(Allergy, { through: FoodAllergy });
+Allergy.belongsToMany(FoodPlace, { through: FoodAllergy });
 
+User.belongsToMany(FoodPlace, { through: UserFood});
+FoodPlace.belongsToMany(User, { through: UserFood});
 
 module.exports = {
   User, 
-  Food_Establishment, 
+  FoodPlace, 
   Allergy,
   sequelize: sequelize
 };

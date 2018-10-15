@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import "./style.css";
+import Home from "../Home";
+import Details from "../Details";
+import RegistrationPage from "../RegistrationPage";
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       username: "",
@@ -11,8 +14,16 @@ class App extends Component {
       isLoggedIn: false
     }
   }
+
   render() {
-    return <div className="App">Hello World</div>;
+    return (
+      <div className="App">NYC Allergy Free Eats!!!!
+      <Home />
+        <Details />
+        <RegistrationPage handleChange={this.handleChange} onLogin={this.onLogin} username={this.state.username} password={this.state.password} />
+      </div>
+
+    );
   }
 }
 
