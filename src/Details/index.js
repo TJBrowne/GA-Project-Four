@@ -6,7 +6,9 @@ class Details extends Component {
 
     render() {
         return (
-            <div></div>
+            <div>
+                <h1>User Info</h1>
+            </div>
         );
     }
 }

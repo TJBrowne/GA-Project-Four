@@ -15,12 +15,43 @@ class App extends Component {
     }
   }
 
+  componentDidMount = () => {
+    const token = localStorage.getItem("user-jwt");
+    if (token) {
+      this.setState({
+        isLoggedIn: true,
+      });
+    }
+  }
+
+  handleChange = event => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  onLogin = () => {
+    this.setState({
+      isLoggedIn: true,
+    });
+  }
+
+  onLogout = () => {
+    localStorage.clear();
+    
+    this.setState({
+      isLoggedIn: false,
+    })
+  }
+
   render() {
     return (
-      <div className="App">NYC Allergy Free Eats!!!!
+      <div className="App">
+      <h1>NYC Allergy Free Eats!!!!</h1>
       <Home />
-        <Details />
         <RegistrationPage handleChange={this.handleChange} onLogin={this.onLogin} username={this.state.username} password={this.state.password} />
+        <Details />
       </div>
 
     );

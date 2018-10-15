@@ -7,7 +7,12 @@ const PORT = process.env.PORT || 5678;
 const path = require('path');
 
 const app = express();
+// Static hosting for built files
+app.use("/", express.static("./build/"));
 
+const jwtSecret = 'abc13225566'
+
+app.use(bodyParser.json());
 
 app.get('/api/restaurants', async (request, response) => {
   const foodPlace = await FoodPlace.findAll({});
@@ -21,7 +26,7 @@ app.get('/api/restaurants/:id', async (request, response) => {
 
 app.post('/api/register', async (request, response) => {
   if (!request.body.username || !request.body.password) {
-    response.status(404).send("json body must include username, password");
+    response.status(404).send("Please include username and password");
     return;
   }
   const existingUser = await User.findOne({
@@ -49,6 +54,39 @@ app.post('/api/register', async (request, response) => {
   response.status(200).json(token);
 });
 
+app.post('/api/login', async (request, response) => {
+  const { username, password } = request.body;
+  if (!username || !password) {
+    response.status(400).json({
+      error: "Login requires a username and password in the request body."
+    });
+    return;
+  }
+  const existingUser = await User.findOne({
+    where: {
+      username: username
+    }
+  });
+
+  if (existingUser === null) {
+    response.status(401).json({
+      message: "Invalid username or password."
+    });
+    return;
+  }
+  
+  const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
+  if (isPasswordCorrect) {
+    const token = jwt.sign({ userId: existingUser.id }, jwtSecret);
+    response.json({
+      token: token
+    });
+  } else {
+    response.status(401).json({
+      message: "Invalid username or password."
+    })
+  }
+});
 
 
 

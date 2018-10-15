@@ -45,7 +45,7 @@ const Allergy = sequelize.define('allergy', {
 
 const UserAllergy = sequelize.define('userAllergy');
 const FoodAllergy = sequelize.define('foodAllergy');
-const UserFood = sequelize.define('userFood');
+const UserFoodPlace = sequelize.define('userFoodPlace');
 
 User.belongsToMany(Allergy, { through: UserAllergy });
 Allergy.belongsToMany(User, { through: UserAllergy });
@@ -53,8 +53,8 @@ Allergy.belongsToMany(User, { through: UserAllergy });
 FoodPlace.belongsToMany(Allergy, { through: FoodAllergy });
 Allergy.belongsToMany(FoodPlace, { through: FoodAllergy });
 
-User.belongsToMany(FoodPlace, { through: UserFood});
-FoodPlace.belongsToMany(User, { through: UserFood});
+User.belongsToMany(FoodPlace, { through: UserFoodPlace});
+FoodPlace.belongsToMany(User, { through: UserFoodPlace});
 
 module.exports = {
   User, 
