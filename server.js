@@ -25,8 +25,18 @@ app.get('/api/restaurants/:id', async (request, response) => {
   if ( eachFoodPlace === null) {
       response.sendStatus(404);
   } else {
-      response.json(eachFoodPlace)
+      response.json(eachFoodPlace);
   }
+});
+
+app.get('/api/restaurants/:name', async (request, response) => {
+  const eachFoodPlace = await FoodPlace.findAll({
+    where: {
+      name: request.params.name
+        // $iLike: `${request.params.name}%`     
+    }
+  });
+  response.json(eachFoodPlace);
 });
 
 app.post('/api/register', async (request, response) => {
@@ -93,44 +103,51 @@ app.post('/api/login', async (request, response) => {
   }
 });
 
-app.get('/api/current-user', async (request, response) => {
+// app.get('/api/current-user', async (request, response) => {
   
-  const token = request.headers['jwt-token'];
-  let verification;
-  try{
-    verification = jwt.verify(token, jwtSecret);
-  }catch(e) {
-    console.log(e);
-  }
-  const findId = await User.findOne({
-    where: {
-      id: verification.userId
-    }
-  });
-  response.status(200).json(findId.id, findId.username);
-});
+//   const token = request.headers['jwt-token'];
+//   let verification;
+//   try{
+//     verification = jwt.verify(token, jwtSecret);
+//   }catch(e) {
+//     console.log(e);
+//   }
+//   const findId = await User.findOne({
+//     where: {
+//       id: verification.userId
+//     }
+//   });
+//   response.status(200).json(findId.id, findId.username);
+// });
 
-app.put('/api/current-user', async(request, response) => {
-  const token = request.headers['jwt-token'];
-  let verification;
-  try{ 
-    verification = jwt.verify(token, jwtSecret);
-  } catch(e) {
-    console.log(e);
-  }
-  // console.log(tokenData);
+app.put('/api/current-user', async (request, response) => {
+  const { username, password, email } = request.body;
   const user = await User.findOne({
     where: {
-      id: verification.userId
+      // username: username,
+      // password: password,
+      // email: email
     }
   });
-  user.favoritesList = request.body.favoritesList;
+  if (user) {
+    user.username = username;
+    user.password = password;
+    user.email = email;
+  }
   await user.save();
-  response.sendStatus(204);
-})
+  
+  response.sendStatus(200);
+});
 
-
-
+app.delete('/api/user/:id', async (request, response) => {
+  const removeUser = await User.findOne({
+      where: {
+          id: request.params.id
+      }
+  })
+  removeUser.destroy();
+  response.sendStatus(200);
+});
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);
