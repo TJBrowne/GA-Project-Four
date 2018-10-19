@@ -1,6 +1,13 @@
 const { User, FoodPlace, Allergy, UserAllergy, FoodAllergy } = require('./models');
 
 const main = async () => {
+
+  const chris = await User.create({
+    username: "chrisjr",
+    password: "123456",
+    email: "chrisb@gmail.com"
+  });
+
   const bigDaddy = await FoodPlace.create({
     name: "Big Daddy'\s",
     address: "2454 Broadway, New York NY, 10024",
@@ -117,6 +124,9 @@ const main = async () => {
 
   await huKitchen.addAllergy(dairy);
   await huKitchen.addAllergy(gluten);
+
+  await chris.addAllergy(dairy);
+  await chris.addFoodPlace(colors);
 
   process.exit();
 }

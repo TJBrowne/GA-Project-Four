@@ -47,7 +47,11 @@ class RegistrationPage extends Component {
             return;
         }
         localStorage.setItem('user-jwt', responseBody);
-        this.props.history.push("/home");
+
+        this.setState({
+            isLoggedIn: true
+        })
+
     }
 
     logIn = async () => {
@@ -79,11 +83,16 @@ class RegistrationPage extends Component {
         }
         this.logIn();
         localStorage.setItem('user-jwt', JSON.stringify(responseBody))
-        this.props.history.push("/home");
+        
+        this.setState({
+            isLoggedIn: true
+        })
     }
-    selectAllergy = async () => {}
 
     render() {
+        if (this.state.isLoggedIn) {
+            return <Redirect to="/home" />
+        }
         return (
             <div className="userInput">
             <div>

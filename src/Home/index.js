@@ -31,7 +31,7 @@ class Home extends Component {
                             <Link className="link" to="/home">Home</Link>
                             <Link className="link" to="/" onClick={this.onLogout}>Register/Login</Link>
                             <Link className="link" to="/details" onClick={this.onLogout}>User Details</Link>
-                            <Link className="link" to="/" onClick={this.onLogin}>Update User Info</Link>
+                            <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User Info</Link>
                         </div>
                     </nav>
                 </div>

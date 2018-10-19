@@ -5,6 +5,7 @@ import Details from "../Details";
 import RegistrationPage from "../RegistrationPage";
 import SearchBar from "../SearchBar";
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import UpdateUser from "../UpdateUser";
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
       <Route path="/home" exact component={Home} />
       <Route path="/search" exact component={SearchBar} />
       <Route path="/details" exact component={Details} />
+      <Route path="/updateUser" exact component={UpdateUser} />
       </div>
       </Router>
     );

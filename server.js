@@ -103,38 +103,44 @@ app.post('/api/login', async (request, response) => {
   }
 });
 
-// app.get('/api/current-user', async (request, response) => {
-  
-//   const token = request.headers['jwt-token'];
-//   let verification;
-//   try{
-//     verification = jwt.verify(token, jwtSecret);
-//   }catch(e) {
-//     console.log(e);
-//   }
-//   const findId = await User.findOne({
-//     where: {
-//       id: verification.userId
-//     }
-//   });
-//   response.status(200).json(findId.id, findId.username);
-// });
-
-app.put('/api/current-user', async (request, response) => {
-  const { username, password, email } = request.body;
-  const user = await User.findOne({
+app.get('/api/current-user', async (request, response) => {
+  const token = request.headers['jwt-token'];
+  let verification;
+  try{
+    verification = jwt.verify(token, jwtSecret);
+  }catch(e) {
+    console.log(e);
+  }
+  const findId = await User.findOne({
     where: {
-      // username: username,
-      // password: password,
-      // email: email
+      id: verification.userId
     }
   });
-  if (user) {
-    user.username = username;
-    user.password = password;
-    user.email = email;
-  }
+  response.status(200).json(findId);
+});
+
+app.put('/api/current-user/:id', async (request, response) => {
+  const { username } = request.body;
+  const id = request.params.id
+
+  const user = await User.findOne({
+    where: {
+      id: id
+    }
+  });
+
+  // console.log(username);
+  // console.log(user)
+
+  // if (user) {
+  user.username = username;
+    // user.password = password;
+    // user.email = email;
+  // }
+
   await user.save();
+
+  // const token = jwt.sign({ userId: user.id }, jwtSecret);
   
   response.sendStatus(200);
 });
