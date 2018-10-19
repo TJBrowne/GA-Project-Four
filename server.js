@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5678;
 const path = require('path');
 
 const app = express();
+// Static hosting for built files
 app.use("/", express.static("./build/"));
 const jwtSecret = 'abc13225566'
 app.use(bodyParser.json());
@@ -158,6 +159,14 @@ app.delete('/api/user/:id', async (request, response) => {
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);
 });
+
+// In production, any request that doesn't match a previous route
+// should send the front-end application, which will handle the route.
+if (process.env.NODE_ENV == "production") {
+  app.get("/*", function(request, response) {
+    response.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
 
 
 
