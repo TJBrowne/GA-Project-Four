@@ -98,9 +98,8 @@ class RegistrationPage extends Component {
             <div>
             <nav className="navbar">
                 <div className="nav-links">
-                    <Link className="link" to="/home">Home</Link>
-                    <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
                     <Link className="link" to="/" onClick={this.onLogin}>Login</Link>
+                    <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
                 </div>
             </nav>
             </div>
@@ -112,7 +111,7 @@ class RegistrationPage extends Component {
                     <button type="button" onClick={this.register}>Register</button>
                     <button type="button" onClick={this.logIn}>Login</button>
                 
-                    <div className="allergies">
+                    {/* <div className="allergies">
                         <h2>Add Allergies</h2>
                         <p>Select from the allergies/ intolerances below and we will only show you restaurants that match.</p>
                     
@@ -126,7 +125,7 @@ class RegistrationPage extends Component {
                         <input type="radio" name="dairy" value="dairy" />Dairy Free<br></br>
                         <input type="radio" name="treenut" value="treenut" />Treenut Free
                         <input type="radio" name="sulfite" value="sulfite" />Sulfite Free<br></br>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         );

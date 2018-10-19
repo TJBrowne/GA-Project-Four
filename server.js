@@ -169,7 +169,7 @@ app.delete('/api/user', async (request, response) => {
       }
   })
   removeUser.destroy();
-  response.sendStatus(200);
+  response.sendStatus(200).send("User Removed!!!");
 });
 
 app.listen(PORT, () => {

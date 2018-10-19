@@ -44,10 +44,27 @@ class Details extends Component {
                 <nav className="navbar">
                     <div className="nav-links">
                         <Link className="link" to="/home">Home</Link>
-                        <Link className="link" to="/" onClick={this.onLogout}>Register/Login</Link>
+                        <Link className="link" to="/" onClick={this.onLogout}>Register | Login</Link>
+                        <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User Info</Link>
+                        <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
                     </div>
                 </nav>
                 <form onSubmit={this.onFormSubmit}>
+                <div className="allergies">
+                        <h2>Add Allergies</h2>
+                        <p>Select from the allergies/ intolerances below and we will only show you restaurants that match.</p>
+                    
+                        <input type="radio" name="gluten" value="gluten" />Gluten Free
+                        <input type="radio" name="soy" value="soy" />Soy Free
+                        <input type="radio" name="wheat" value="wheat" />Wheat Free
+                        <input type="radio" name="egg" value="egg" />Egg Free
+                        <input type="radio" name="peanut" value="peanut" />Peanut Free<br></br>
+                        <input type="radio" name="seafood" value="seafood" />Seafood Free
+                        <input type="radio" name="sesame" value="sesame" />Sesame Seed Free
+                        <input type="radio" name="dairy" value="dairy" />Dairy Free<br></br>
+                        <input type="radio" name="treenut" value="treenut" />Treenut Free
+                        <input type="radio" name="sulfite" value="sulfite" />Sulfite Free<br></br>
+                    </div>
                     <button type="button" onClick={this.userDelete}>Delete Profile</button>
                 </form>
                 </div>

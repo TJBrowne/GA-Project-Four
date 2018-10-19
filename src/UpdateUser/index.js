@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 class UpdateUser extends Component {
     constructor(props) {
@@ -79,6 +80,14 @@ class UpdateUser extends Component {
         return (
             <div>
                 <h1>User Update</h1>
+                <nav className="navbar">
+                        <div className="nav-links">
+                            <Link className="link" to="/home">Home</Link>
+                            <Link className="link" to="/" onClick={this.onLogout}>Register/Login</Link>
+                            <Link className="link" to="/details" onClick={this.onLogout}>User Profile</Link>
+                            <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
+                        </div>
+                    </nav>
                 <form onSubmit={this.onFormSubmit}>
                     <input type="text" name="newUsername" onChange={this.handleUpdateChange} value={this.state.newUsername}/><br></br>
                     <button type="button" onClick={this.newLogIn}>Submit</button>

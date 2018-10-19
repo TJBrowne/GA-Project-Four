@@ -28,10 +28,10 @@ class Home extends Component {
                 <div>
                     <nav className="navbar">
                         <div className="nav-links">
-                            <Link className="link" to="/home">Home</Link>
-                            <Link className="link" to="/" onClick={this.onLogout}>Register/Login</Link>
-                            <Link className="link" to="/details" onClick={this.onLogout}>User Details</Link>
+                            <Link className="link" to="/" onClick={this.onLogout}>Register | Login</Link>
+                            <Link className="link" to="/details" onClick={this.onLogin}>User Profile</Link>
                             <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User Info</Link>
+                            <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
                         </div>
                     </nav>
                 </div>
