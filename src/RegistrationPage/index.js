@@ -5,21 +5,21 @@ import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom
 class RegistrationPage extends Component {
     constructor(props) {
         super(props);
-    
+
         this.state = {
-          username: "",
-          password: "",
-          email: "",
-          isLoggedIn: false,
+            username: "",
+            password: "",
+            email: "",
         }
-      }
-      
+    }
+
     handleChange = event => {
         event.preventDefault();
         this.setState({
-          [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value,
         });
-      }
+    }
+
     onFormSubmit = event => {
         event.preventDefault();
     }
@@ -48,10 +48,7 @@ class RegistrationPage extends Component {
         }
         localStorage.setItem('user-jwt', responseBody);
 
-        this.setState({
-            isLoggedIn: true
-        })
-
+        this.props.onLogin();
     }
 
     logIn = async () => {
@@ -81,36 +78,34 @@ class RegistrationPage extends Component {
             });
             return;
         }
-        this.logIn();
-        localStorage.setItem('user-jwt', JSON.stringify(responseBody))
         
-        this.setState({
-            isLoggedIn: true
-        })
+        localStorage.setItem('user-jwt', JSON.stringify(responseBody))
+
+        this.props.onLogin();
     }
 
     render() {
-        if (this.state.isLoggedIn) {
+        if (this.props.isLoggedIn) {
             return <Redirect to="/home" />
         }
         return (
             <div className="userInput">
-            <div>
-            <nav className="navbar">
-                <div className="nav-links">
-                    <Link className="link" to="/" onClick={this.onLogin}>Login</Link>
-                    <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
+                <div>
+                    <nav className="navbar">
+                        <div className="nav-links">
+                            <Link className="link" to="/" onClick={this.onLogin}>Login</Link>
+                            <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
-            </div>
                 <h1>User Log In/Registration</h1>
                 <form onSubmit={this.onFormSubmit}>
-                    <input type="text" name="username" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
-                    <input type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password}/>
-                    <input type="text" name="email" placeholder="Email (optional)" onChange={this.handleChange} value={this.state.email}/>
+                    <input type="text" name="username" placeholder="Username" onChange={this.handleChange} value={this.state.username} />
+                    <input type="password" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
+                    <input type="text" name="email" placeholder="Email (optional)" onChange={this.handleChange} value={this.state.email} />
                     <button type="button" onClick={this.register}>Register</button>
                     <button type="button" onClick={this.logIn}>Login</button>
-                
+
                     {/* <div className="allergies">
                         <h2>Add Allergies</h2>
                         <p>Select from the allergies/ intolerances below and we will only show you restaurants that match.</p>

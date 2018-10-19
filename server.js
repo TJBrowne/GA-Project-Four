@@ -13,6 +13,7 @@ const jwtSecret = 'abc13225566'
 app.use(bodyParser.json());
 
 app.get('/api/restaurants', async (request, response) => {
+
   const foodPlace = await FoodPlace.findAll({});
   response.json(foodPlace);
 });

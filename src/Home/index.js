@@ -10,6 +10,7 @@ class Home extends Component {
             searchedRestaurants: [],
             address: [],
             allergyFriendly: [],
+            // isLoggedIn: false
         }
     }
 
@@ -22,17 +23,26 @@ class Home extends Component {
         });
     }
 
+
     render() {
         return (
             <div>
                 <div>
                     <nav className="navbar">
-                        <div className="nav-links">
+                        {!this.props.isLoggedIn && (<Link className="link" to="/" onClick={this.onLogout}>Register | Login</Link>)}
+                        {this.props.isLoggedIn && (
+                            <div className="nav-links">
+                                <Link className="link" to="/details" onClick={this.onLogin}>User Profile</Link>
+                                <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User Info</Link>
+                                <Link className="link" to="/" onClick={this.props.onLogout}>Logout</Link>
+                            </div>
+                        )}
+                        {/* <div className="nav-links">
                             <Link className="link" to="/" onClick={this.onLogout}>Register | Login</Link>
                             <Link className="link" to="/details" onClick={this.onLogin}>User Profile</Link>
                             <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User Info</Link>
                             <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
-                        </div>
+                        </div> */}
                     </nav>
                 </div>
                 <h1>Welcome to NYC Allergy Free Eats!!!!</h1>

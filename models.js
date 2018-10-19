@@ -49,6 +49,8 @@ const UserFoodPlace = sequelize.define('userFoodPlace');
 User.belongsToMany(Allergy, { through: UserAllergy });
 Allergy.belongsToMany(User, { through: UserAllergy });
 
+
+
 FoodPlace.belongsToMany(Allergy, { through: FoodAllergy });
 Allergy.belongsToMany(FoodPlace, { through: FoodAllergy });
 

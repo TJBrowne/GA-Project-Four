@@ -69,8 +69,7 @@ class UpdateUser extends Component {
                 errorMessage: responseBody.message
             });
             return;
-        }
-        
+        }        
         // this.newLogIn(); 
         // localStorage.setItem('user-jwt', JSON.stringify(responseBody))
         // this.props.history.push("/home");
