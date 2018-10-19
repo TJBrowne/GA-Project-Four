@@ -6,9 +6,8 @@ class UpdateUser extends Component {
         super(props);
     
         this.state = {
-            userId: '',
+          userId: '',
           newUsername: "",
-        //   newPassword: "",
           newEmail: "",
           isLoggedIn: true,
         }

@@ -40,6 +40,15 @@ app.get('/api/restaurants/:name', async (request, response) => {
   response.json(eachFoodPlace);
 });
 
+app.get('/api/user/:username', async (request, response) => {
+  const getUser = await User.findOne({
+    where: {
+      username: request.params.username
+    }
+  });
+  response.json(getUser);
+});
+
 app.post('/api/register', async (request, response) => {
   if (!request.body.username || !request.body.password) {
     response.status(404).send("Please include username and password");
@@ -146,10 +155,17 @@ app.put('/api/current-user/:id', async (request, response) => {
   response.sendStatus(200);
 });
 
-app.delete('/api/user/:id', async (request, response) => {
+app.delete('/api/user', async (request, response) => {
+    const token = request.headers['jwt-token'];
+  let verification;
+  try{
+    verification = jwt.verify(token, jwtSecret);
+  }catch(e) {
+    console.log(e);
+  }
   const removeUser = await User.findOne({
       where: {
-          id: request.params.id
+          id: verification.userId
       }
   })
   removeUser.destroy();
