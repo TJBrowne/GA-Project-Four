@@ -1,0 +1,12 @@
+/* .container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 170px auto 30px;
+    grid-template-areas:
+    "h h h h h h h h "
+    "h h h h h h h h"
+    "p p p p p p p p"
+    "s s s s s s s s"
+    "f f f f f f f f";
+} */

@@ -1,0 +1,49 @@
+/* .container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 170px auto 30px;
+    grid-template-areas:
+    "n n n n n n n n n n n n"
+    "h h h h h h h h h h h h"
+    "p p p p p p p p d d d d"
+    "s s s s s s s s d d d d"
+    "r r r r r r r r d d d d";
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    grid-area: n;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    /* color: ;
+    padding: 0 10px;
+    flex-direction: column; */
+/* } */
+
+/* h1 {
+    grid-area: h;
+    font-family: 'Kodchasan', sans-serif;
+} */
+
+/* p {
+    font-family: 'Playfair Display', serif;
+    /* grid-area: p; */
+/* } */ 
+
+/* h2 {
+    font-family: 'Kodchasan', sans-serif;
+} */
+
+/* .restSearch {
+    grid-area: r;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}  */

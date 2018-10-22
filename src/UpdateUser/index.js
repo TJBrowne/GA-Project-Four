@@ -78,7 +78,7 @@ class UpdateUser extends Component {
     render() {
         return (
             <div>
-                <h1>User Update</h1>
+                <h4>User Update</h4>
                 <nav className="navbar">
                         <div className="nav-links">
                             <Link className="link" to="/home">Home</Link>

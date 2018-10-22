@@ -37,7 +37,9 @@ class App extends Component {
 
       <Router>
         <div className="App">
-          <h1>NYC Allergy Free Eats!!!!</h1>
+        <div className="title">
+          <h1>NYC Allergy Free Eats</h1>
+          </div>
           <Route exact path="/" render={(props) => <RegistrationPage {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLogin} />} />
           <Route exact path="/home" render={(props) => <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogout={this.onLogout} />} />
           <Route path="/search" exact component={SearchBar} />
