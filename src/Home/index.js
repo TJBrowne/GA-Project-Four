@@ -10,24 +10,31 @@ class Home extends Component {
             searchedRestaurants: [],
             address: [],
             allergyFriendly: [],
-            // isLoggedIn: false
         }
     }
 
     componentDidMount = async () => {
-        const response = await fetch('/api/restaurants');
-        const searchedRestaurants = await response.json();
-
-        this.setState({
-            searchedRestaurants: searchedRestaurants
+        const requestBody = JSON.stringify();
+        const restResponse = await fetch('/api/current-user/restaurants', {
+            method: 'POST',
+            body: requestBody,
+            headers: {
+                'jwt-token': localStorage.getItem('user-jwt')
+            }
         });
+        this.setState({
+            restResponse: restResponse
+        });
+        return
+        // const responseBody = await response.json();
+        // localStorage.setItem('user-jwt', JSON.stringify(responseBody))
     }
 
 
     render() {
         return (
             <div>
-                <div>
+                <div className="top-nav">
                     <nav className="navbar">                        
                             <div className="nav-links">
                                 <Link className="link" to="/details" onClick={this.onLogin}>User Profile</Link>
@@ -40,7 +47,6 @@ class Home extends Component {
                 <p>New York's density and diversity pack a lot in and offers something for everyone, making it one of the most food allergy-friendly cities you can visit. These businesses aren't all allergen-free, but they are experienced with food allergies and have an educated staff, which is why they made our list.</p>
                 <div>
                     <div className="search-bar">
-                        {/* <span role="img">🔍</span> */}
                         <input type="text" placeholder="Search" onChange={this.handleChange}></input>
                     </div>
                     <h3>Results</h3>

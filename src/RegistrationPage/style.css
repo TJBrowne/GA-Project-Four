@@ -11,23 +11,30 @@
     "f f f f f f f f";
 }
 .navbar {
+    grid-area: h;
     position: fixed;
     top: 0;
-    background: #383B53;
-    display: inline-block;
+    background: #383b53;
+    display: flex;
     justify-content: space-between;
     width: 100%;
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     text-align: center;
+    flex-direction: column;
 }
 .link {
     margin: 30px;
+    background: #383B53;
+    color: white;
+}
+.link:hover {
+    background: white;
 }
 h1 {
     width: 100%;
-    padding-top: 85px;
+    padding-top: 75px;
     font-family: 'Kodchasan', sans-serif;
     text-align: center;
     font-size: 50px;
@@ -56,19 +63,20 @@ h3 {
     padding-top: 20px;
 }
 .search-bar {
-    width: 130px;
+    width: 275px;
     height: 35px;
     display: flex;
     font-size: 80px;
     padding: 1px;
-    border: 2px solid #383B53;
+    border: 0px solid #383B53;
     border-radius: 6px;
-    background-color: white;
+    background-color: transparent;
     margin: 0 auto;
     
 }
 input {
     text-align: center;
+    padding: 20px;
 }
 .restSearch {
     grid-area: r;
@@ -87,6 +95,10 @@ input {
     bottom: 0;
     font-size: 25px;
     padding: 20px;
+    
+}
+.social img {
+    background: #383B53;
 }
 form {
     font-family: 'Kodchasan', sans-serif;

@@ -4,7 +4,7 @@ const main = async () => {
 
   const chris = await User.create({
     username: "chrisjr",
-    password: "123456",
+    password: "$2a$12$74Cajq0zyGqgVQBuJbRB6e8oYwBDDhXXYSm.N5g2hFLBPw./wPeEe",
     email: "chrisb@gmail.com"
   });
 

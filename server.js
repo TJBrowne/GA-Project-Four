@@ -41,6 +41,38 @@ app.get('/api/restaurants/:name', async (request, response) => {
   response.json(eachFoodPlace);
 });
 
+app.get('/api/current-user/restaurants', async (request, response) => {
+  const token = request.headers['jwt-token'];
+  let verification;
+  try{
+    verification = jwt.verify(token, jwtSecret);
+  }catch(e) {
+    console.log(e);
+  }
+  const user = await User.findOne({
+    where: {
+      id: verification.userId
+    }
+  });
+  
+  const userAllergies = await user.getAllergies()
+  console.log(userAllergies[0].id);
+  const allergyIds = [];
+  for ( let allergy of userAllergies ) {
+    allergyIds.push(allergy.id);
+  }
+  const foodPlaces = await FoodPlace.findAll({
+    include: [{
+      model: Allergy,
+      where: {
+        id: allergyIds
+      },
+      attributes: []
+    }]
+  })
+response.json(foodPlaces);
+})
+
 app.get('/api/user/:username', async (request, response) => {
   const getUser = await User.findOne({
     where: {
