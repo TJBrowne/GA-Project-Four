@@ -28,20 +28,12 @@ class Home extends Component {
         return (
             <div>
                 <div>
-                    <nav className="navbar">
-                        
+                    <nav className="navbar">                        
                             <div className="nav-links">
                                 <Link className="link" to="/details" onClick={this.onLogin}>User Profile</Link>
                                 <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User</Link>
                                 <Link className="link" to="/" onClick={this.props.onLogout}>Logout</Link>
                             </div>
-                        
-                        {/* <div className="nav-links">
-                            <Link className="link" to="/" onClick={this.onLogout}>Register | Login</Link>
-                            <Link className="link" to="/details" onClick={this.onLogin}>User Profile</Link>
-                            <Link className="link" to="/updateUser" onClick={this.onLogin}>Update User Info</Link>
-                            <Link className="link" to="/" onClick={this.onLogout}>Logout</Link>
-                        </div> */}
                     </nav>
                 </div>
                 <h2>Welcome to NYC Allergy Free Eats</h2>
